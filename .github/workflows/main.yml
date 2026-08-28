@@ -2,7 +2,7 @@ name: Run Selenium Test
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   test:
@@ -19,7 +19,7 @@ jobs:
           cache: 'maven'
 
       - name: Set up Chrome Browser
-        uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v3
 
       - name: Run Selenium Tests
         run: mvn clean test
