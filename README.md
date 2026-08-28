@@ -33,18 +33,3 @@ Todo Feature:
 Add Todo: Registers a user via API, injects cookies to bypass manual UI login, adds a task via API, and asserts task creation on the UI.
 
 Delete Todo: Prepares test data via API calls and asserts the task deletion flow through UI interactions.
-
-🚀 How to Run the Tests
-Clone the repository:
-
-Bash
-git clone https://github.com/your-username/ToDoApp.git
-cd ToDoApp
-Run tests via Maven:
-
-Bash
-mvn clean test
-Generate Allure Report:
-
-Bash
-mvn allure:serve
