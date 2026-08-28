@@ -1,0 +1,25 @@
+name: Run Selenium Test
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Set up Chrome Browser
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run Selenium Tests
+        run: mvn clean test
