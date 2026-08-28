@@ -2,6 +2,7 @@ package factory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -19,7 +20,18 @@ public class DriverFactory {
         switch (browser) {
 
             case "CHROME":
-                driver = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+
+                // Required for GitHub Actions / Linux CI environment
+                if (System.getenv("GITHUB_ACTIONS") != null) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                }
+
+                chromeOptions.addArguments("--window-size=1920,1080");
+
+                driver = new ChromeDriver(chromeOptions);
                 break;
 
             case "FIREFOX":
@@ -43,7 +55,6 @@ public class DriverFactory {
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
 
         return driver;
-
     }
-
 }
+
